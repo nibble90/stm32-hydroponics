@@ -8,6 +8,7 @@
 #include "../peripherals/scb.h"
 #include "../peripherals/dbg.h"
 #include "../peripherals/afio.h"
+#include "../peripherals/tim.h"
 
 /**
  * @brief This function does nothing for a given number of iterations.
@@ -37,6 +38,7 @@ int main()
     openPortBClockGate();
 
     setB0ToEXTI();
+    // setPA6ToEXTI(); default setting covers this -> deleted method
 
     setPinType(GPIOC, 13, output); // onboard LED
     setPinType(GPIOB, 0, input); // B0 to input
@@ -48,6 +50,8 @@ int main()
     // enableRTCAlarmInterrupt();
     enableEXTILine0Interrupt();
     enableLine0Interrupt();
+    enableTimer3Interrupt();
+    enableEXTILine6Interrupt();
 
     setPin(GPIOC, 13, 0); // 0 == LED on
     //setPins(1);
@@ -55,9 +59,16 @@ int main()
     setPin(GPIOC, 13, 1);
     //setPins(0);
 
-    setDeepSleep(1); // Set the deep sleep bit high
-    setPDDS(0); // Use stop mode in deep sleep
-    setLPPS(1); // Enable low-power deep sleep mode
+    enableTimerClock(TIM3);
+    enableTimerCounter(TIM3);
+    setTimerEventSourceToOverflow(TIM3);
+    passTimerReloadValueIntoRegister(TIM3, PUMP1_FILL_TIME);
+    enableTimerUpdateGeneration(TIM3);
+    enableTimerInterrupt(TIM3);
+
+    //setDeepSleep(1); // Set the deep sleep bit high
+    //setPDDS(0); // Use stop mode in deep sleep
+    //setLPPS(1); // Enable low-power deep sleep mode
 
     for (;;){
         // Set the output bit low (LED on)
@@ -67,9 +78,11 @@ int main()
         // Set the output bit high (LED off)
         setPin(GPIOC, 13, 1);
 
-        __asm__ volatile("DSB"); // Data synchronization barrier to ensure all memory accesses are complete
-        __asm__ volatile("WFI"); // Wait for event
-        __asm__ volatile("ISB"); // Instruction synchronization barrier to flush the pipeline
+        //__asm__ volatile("DSB"); // Data synchronization barrier to ensure all memory accesses are complete
+        //__asm__ volatile("WFI"); // Wait for event
+        //__asm__ volatile("ISB"); // Instruction synchronization barrier to flush the pipeline
+        //__asm__ volatile("nop");
+        doNothing(1200000);
     }
 
     return 0;
@@ -110,4 +123,10 @@ extern void EXTI0_IRQHandler(void){
 
         doNothing(600000);
     }
+}
+
+extern void TIM3_IRQHandler(void){
+    resetEXTIPR6();
+    clearTimer3Interrupt();
+    doNothing(100000);
 }
