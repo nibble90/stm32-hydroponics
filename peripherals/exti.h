@@ -3,6 +3,7 @@
 
 #include "../constants.h"
 #include <stdint.h>
+#include "tim.h"
 
 // EXTI addresses start here
 #define EXTI (PERIPHERAL + 0x10400)
@@ -21,5 +22,7 @@ void enableEXTIIMRRTCInterrupt(void);
 void resetEXTIPRRTC(void);
 void enableEXTILine0Interrupt(void);
 void resetEXTIPR0(void);
+void enableEXTILine6Interrupt(void);
+void resetEXTIPR6(void);
 
 #endif

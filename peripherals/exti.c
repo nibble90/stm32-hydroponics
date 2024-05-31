@@ -48,3 +48,13 @@ void resetEXTIPRRTC(){
 void resetEXTIPR0(){
     EXTI_PR &= (uint32_t)(0b1 << 0);
 }
+
+void enableEXTILine6Interrupt(){
+    EXTI_IMR |= (0b1 << 6);
+    EXTI_EMR |= (0b1 << 6);
+    EXTI_RTSR |= (0b1 << 6);
+}
+
+void resetEXTIPR6(){
+    EXTI_PR &= (uint32_t)(0b1 << 6);
+}
