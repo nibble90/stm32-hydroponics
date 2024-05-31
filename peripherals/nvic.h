@@ -35,5 +35,7 @@ void enableRTCAlarmInterrupt(void);
 void clearRTCAlarmInterrupt(void);
 void enableLine0Interrupt(void);
 void clearLine0Interrupt(void);
+void enableTimer3Interrupt(void);
+void clearTimer3Interrupt(void);
 
 #endif

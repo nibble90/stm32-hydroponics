@@ -47,3 +47,11 @@ void clearLine0Interrupt(void)
 {
     NVIC_ICPR0 |= NVIC_ISERx_MASK(6);
 }
+
+void enableTimer3Interrupt(void){
+    NVIC_ISER0 |= NVIC_ISERx_MASK(29);
+}
+
+void clearTimer3Interrupt(void){
+    NVIC_ICPR0 |= NVIC_ISERx_MASK(29);
+}
