@@ -4,9 +4,9 @@ void fillTank(){
     // Turn all pumps on
     turnPumpsOn();
     // Wait for the tank to fill
-    doNothing(PUMP1_FILL_TIME);
+    //doNothing(PUMP1_FILL_TIME);
     // Turn all pumps off
-    turnPumpsOff();
+    //turnPumpsOff();
 }
 
 void turnPumpsOn(){

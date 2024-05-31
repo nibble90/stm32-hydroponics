@@ -5,4 +5,8 @@
 #include "../constants.h"
 #include "../peripherals/gpio.h"
 
+void fillTank();
+void turnPumpsOn();
+void turnPumpsOff();
+
 #endif
