@@ -3,6 +3,7 @@
 
 #include "../constants.h"
 #include <stdint.h>
+#include "tim.h"
 
 // Reset and Clock Control registers
 #define RCC (PERIPHERAL + 0x21000) // expands to 0x40021000
@@ -19,5 +20,6 @@ void openPortCClockGate(void);
 void setupRCCForRTC(void);
 int getRCCBDCRLSERDY(void);
 void openPortBClockGate(void);
+void enableTimerClock(TIMER timer);
 
 #endif
