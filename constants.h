@@ -12,7 +12,7 @@
 #define PUMP3_PIN 2
 #define LDR_PIN 3
 
-#define PUMP1_FILL_TIME 10000
+#define PUMP1_FILL_TIME 10
 #define PUMP2_FILL_TIME 10000
 #define PUMP3_FILL_TIME 10000
 
