@@ -14,6 +14,8 @@
 #define RCC_APB2ENR (*(volatile uint32_t*)(RCC + 0x18)) // expands to 0x40021018
 // RCC_BDCR register
 #define RCC_BDCR (*(volatile uint32_t*)(RCC + 0x20)) // expands to 0x40021020
+// RCC_CFGR register
+#define RCC_CFGR (*(volatile uint32_t*)(RCC + 0x04)) // expands to 0x40021004
 
 
 void openPortCClockGate(void);
@@ -21,5 +23,7 @@ void setupRCCForRTC(void);
 int getRCCBDCRLSERDY(void);
 void openPortBClockGate(void);
 void enableTimerClock(TIMER timer);
+void setAPB1Prescaler(int prescaler);
+void setAHBPrescaler(int prescaler);
 
 #endif

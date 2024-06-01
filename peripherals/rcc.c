@@ -85,6 +85,13 @@ int getRCCBDCRLSERDY()
     return ((RCC_BDCR >> 1) & 0b1);
 }
 
+void setAPB1Prescaler(int prescaler){
+    RCC_CFGR |= (prescaler << 8);
+}
+
+void setAHBPrescaler(int prescaler){
+    RCC_CFGR |= (prescaler << 4);
+}
 /**
 * @brief Set various RCC registers required for the RTC
 *
