@@ -72,3 +72,17 @@ void setTimerEventSourceToOverflow(TIMER timer){
             break;
     }
 }
+
+void setTimerPrescaler(TIMER timer, uint32_t prescaler){
+    switch(timer){
+        case TIM3:
+            TIMx_PSC(TIM3_BASE_ADDRESS) = prescaler;
+            break;
+        case TIM4:
+            TIMx_PSC(TIM4_BASE_ADDRESS) = prescaler;
+            break;
+        case TIM5:
+            TIMx_PSC(TIM5_BASE_ADDRESS) = prescaler;
+            break;
+    }
+}

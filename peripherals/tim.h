@@ -28,5 +28,6 @@ void enableTimerCounter(TIMER timer);
 void enableTimerUpdateGeneration(TIMER timer);
 void passTimerReloadValueIntoRegister(TIMER timer, uint32_t autoReloadValue);
 void setTimerEventSourceToOverflow(TIMER timer);
+void setTimerPrescaler(TIMER timer, uint32_t prescaler);
 
 #endif
