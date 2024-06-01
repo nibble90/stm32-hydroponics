@@ -59,12 +59,18 @@ int main()
     setPin(GPIOC, 13, 1);
     //setPins(0);
 
+    //setAHBPrescaler(0b1011);
+    setAPB1Prescaler(0b111);
+
     enableTimerClock(TIM3);
-    enableTimerCounter(TIM3);
+    
     setTimerEventSourceToOverflow(TIM3);
-    passTimerReloadValueIntoRegister(TIM3, PUMP1_FILL_TIME);
+    // setTimerPrescaler(TIM3, (8000*8) - 1);
+    setTimerPrescaler(TIM3, 62500);
+    passTimerReloadValueIntoRegister(TIM3, PUMP1_FILL_TIME*16);
     enableTimerUpdateGeneration(TIM3);
     enableTimerInterrupt(TIM3);
+    enableTimerCounter(TIM3);
 
     //setDeepSleep(1); // Set the deep sleep bit high
     //setPDDS(0); // Use stop mode in deep sleep
@@ -72,17 +78,17 @@ int main()
 
     for (;;){
         // Set the output bit low (LED on)
-        doNothing(600000);
-        setPin(GPIOC, 13, 0);
-        doNothing(600000);
+        //doNothing(6000);
+        //setPin(GPIOC, 13, 0);
+        //doNothing(6000);
         // Set the output bit high (LED off)
-        setPin(GPIOC, 13, 1);
+        //setPin(GPIOC, 13, 1);
 
         //__asm__ volatile("DSB"); // Data synchronization barrier to ensure all memory accesses are complete
         //__asm__ volatile("WFI"); // Wait for event
         //__asm__ volatile("ISB"); // Instruction synchronization barrier to flush the pipeline
-        //__asm__ volatile("nop");
-        doNothing(1200000);
+        __asm__ volatile("nop");
+        //doNothing(12);
     }
 
     return 0;
