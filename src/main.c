@@ -81,8 +81,8 @@ int main()
         //__asm__ volatile("DSB"); // Data synchronization barrier to ensure all memory accesses are complete
         //__asm__ volatile("WFI"); // Wait for event
         //__asm__ volatile("ISB"); // Instruction synchronization barrier to flush the pipeline
-        __asm__ volatile("nop");
-        //doNothing(12);
+        //__asm__ volatile("nop");
+        doNothing(32000);
     }
 
     return 0;
