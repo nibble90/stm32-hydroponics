@@ -23,6 +23,6 @@ void resetEXTIPRRTC(void);
 void enableEXTILine0Interrupt(void);
 void resetEXTIPR0(void);
 void enableEXTILine6Interrupt(void);
-void resetEXTIPR6(void);
+void resetEXTIPR6Interrupt(void);
 
 #endif

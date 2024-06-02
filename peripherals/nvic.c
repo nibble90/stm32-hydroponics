@@ -48,10 +48,41 @@ void clearLine0Interrupt(void)
     NVIC_ICPR0 |= NVIC_ISERx_MASK(6);
 }
 
-void enableTimer3Interrupt(void){
-    NVIC_ISER0 |= NVIC_ISERx_MASK(29);
+
+/**
+ * Enables the interrupt for the specified timer.
+ *
+ * @param timer The timer to enable the interrupt for.
+ */
+void enableTimerInterrupt(TIMER timer){
+    switch(timer){
+        case TIM3:
+            NVIC_ISER0 |= NVIC_ISERx_MASK(29);
+            break;
+        case TIM4:
+            NVIC_ISER0 |= NVIC_ISERx_MASK(30);
+            break;
+        case TIM5:
+            NVIC_ISER1 |= NVIC_ISERx_MASK(12);
+            break;
+    }
 }
 
-void clearTimer3Interrupt(void){
-    NVIC_ICPR0 |= NVIC_ISERx_MASK(29);
+/**
+ * @brief Clears the interrupt for the specified timer.
+ * 
+ * @param timer The timer for which to clear the interrupt.
+ */
+void clearTimerInterrupt(TIMER timer){
+    switch(timer){
+        case TIM3:
+            NVIC_ICPR0 |= NVIC_ISERx_MASK(29);
+            break;
+        case TIM4:
+            NVIC_ICPR0 |= NVIC_ISERx_MASK(30);
+            break;
+        case TIM5:
+            NVIC_ICPR1 |= NVIC_ISERx_MASK(12);
+            break;
+    }
 }

@@ -51,7 +51,7 @@ int main()
     // enableRTCAlarmInterrupt();
     enableEXTILine0Interrupt();
     enableLine0Interrupt();
-    enableTimer3Interrupt();
+    enableTimerInterrupt(TIM3);
     enableEXTILine6Interrupt();
 
     setPin(GPIOC, 13, 0); // 0 == LED on
@@ -127,6 +127,7 @@ extern void EXTI0_IRQHandler(void){
 
 extern void TIM3_IRQHandler(void){
     resetTimerInterrupt(TIM3);
-    resetEXTIPR6();
-    clearTimer3Interrupt();
+    resetEXTIPR6Interrupt();
+    clearTimerInterrupt(TIM3);
+}
 }

@@ -85,13 +85,25 @@ int getRCCBDCRLSERDY()
     return ((RCC_BDCR >> 1) & 0b1);
 }
 
+
+/**
+ * @brief Sets the APB1 prescaler value.
+ *
+ * @param prescaler The prescaler value to be set.
+ */
 void setAPB1Prescaler(uint32_t prescaler){
     RCC_CFGR |= (prescaler << 8);
 }
 
+/**
+ * @brief Sets the AHB prescaler value.
+ * 
+ * @param prescaler The AHB prescaler value to be set.
+ */
 void setAHBPrescaler(uint32_t prescaler){
     RCC_CFGR |= (prescaler << 4);
 }
+
 /**
 * @brief Set various RCC registers required for the RTC
 *
@@ -109,6 +121,12 @@ void setupRCCForRTC(){
     enableRCCBDCRRTCClock();
 }
 
+
+/**
+ * @brief Enables the clock for a specific timer.
+ *
+ * @param timer The timer to enable the clock for.
+ */
 void enableTimerClock(TIMER timer){
     switch(timer){
         case TIM3:

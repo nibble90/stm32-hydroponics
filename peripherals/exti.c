@@ -55,6 +55,6 @@ void enableEXTILine6Interrupt(){
     EXTI_RTSR |= (0b1 << 6);
 }
 
-void resetEXTIPR6(){
+void resetEXTIPR6Interrupt(){
     EXTI_PR &= (uint32_t)(0b1 << 6);
 }

@@ -1,6 +1,7 @@
 #ifndef HEADER_FILE_NVIC
 #define HEADER_FILE_NVIC
 
+#include "../constants.h"
 #include <stdint.h>
 
 // NVIC addresses start here
@@ -35,7 +36,7 @@ void enableRTCAlarmInterrupt(void);
 void clearRTCAlarmInterrupt(void);
 void enableLine0Interrupt(void);
 void clearLine0Interrupt(void);
-void enableTimer3Interrupt(void);
-void clearTimer3Interrupt(void);
+void enableTimerInterrupt(TIMER timer);
+void clearTimerInterrupt(TIMER timer);
 
 #endif
