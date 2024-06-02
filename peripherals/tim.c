@@ -1,22 +1,34 @@
 #include "tim.h"
 
+
+/**
+ * @brief Enables the interrupt for the specified timer.
+ *
+ * @param timer The timer to enable the interrupt for.
+ * 
+ * @return void
+ */
 void enableTimerInterrupt(TIMER timer){
     switch(timer){
         case TIM3:
             TIMx_DIER(TIM3_BASE_ADDRESS) |= 0x01;
-            //TIMx_DIER(TIM3_BASE_ADDRESS) |= (0x01 << 6);
             break;
         case TIM4:
             TIMx_DIER(TIM4_BASE_ADDRESS) |= 0x01;
-            TIMx_DIER(TIM4_BASE_ADDRESS) |= (0x01 << 6);
             break;
         case TIM5:
             TIMx_DIER(TIM5_BASE_ADDRESS) |= 0x01;
-            TIMx_DIER(TIM5_BASE_ADDRESS) |= (0x01 << 6);
             break;
     }
 }
 
+/**
+ * @brief Enables the counter for the specified timer.
+ *
+ * @param timer The timer to enable the counter for.
+ * 
+ * @return void
+ */
 void enableTimerCounter(TIMER timer){
     switch(timer){
         case TIM3:
@@ -31,7 +43,14 @@ void enableTimerCounter(TIMER timer){
     }
 }
 
-void enableTimerUpdateGeneration(TIMER timer){
+/**
+ * @brief Generates an update of the registers for the specified timer.
+ *
+ * @param timer The timer to enable the update generation for.
+ * 
+ * @return void
+ */
+void generateTimerRegisterUpdate(TIMER timer){
     switch(timer){
         case TIM3:
             TIMx_EGR(TIM3_BASE_ADDRESS) |= 0x01;
@@ -45,6 +64,14 @@ void enableTimerUpdateGeneration(TIMER timer){
     }
 }
 
+/**
+ * @brief Passes the auto reload value into the register for the specified timer.
+ *
+ * @param timer The timer to pass the auto reload value into.
+ * @param autoReloadValue The value to pass into the register.
+ * 
+ * @return void
+ */
 void passTimerReloadValueIntoRegister(TIMER timer, uint32_t autoReloadValue){
     switch(timer){
         case TIM3:
@@ -59,6 +86,13 @@ void passTimerReloadValueIntoRegister(TIMER timer, uint32_t autoReloadValue){
     }
 }
 
+/**
+ * @brief Sets the event source to overflow for the specified timer.
+ *
+ * @param timer The timer to set the event source to overflow for.
+ * 
+ * @return void
+ */
 void setTimerEventSourceToOverflow(TIMER timer){
     switch(timer){
         case TIM3:
@@ -73,6 +107,14 @@ void setTimerEventSourceToOverflow(TIMER timer){
     }
 }
 
+/**
+ * @brief Sets the timer prescaler for the specified timer.
+ *
+ * @param timer The timer to set the prescaler for.
+ * @param prescaler The value to set the prescaler to.
+ * 
+ * @return void
+ */
 void setTimerPrescaler(TIMER timer, uint32_t prescaler){
     switch(timer){
         case TIM3:
@@ -87,16 +129,23 @@ void setTimerPrescaler(TIMER timer, uint32_t prescaler){
     }
 }
 
+/**
+ * @brief Resets the interrupt for the specified timer.
+ *
+ * @param timer The timer to reset the interrupt for.
+ * 
+ * @return void
+ */
 void resetTimerInterrupt(TIMER timer){
     switch(timer){
         case TIM3:
-            TIMx_SR(TIM3_BASE_ADDRESS) &= ~(0x01);
+            TIMx_SR(TIM3_BASE_ADDRESS) &= ~(0b01);
             break;
         case TIM4:
-            TIMx_SR(TIM4_BASE_ADDRESS) &= ~(0x01);
+            TIMx_SR(TIM4_BASE_ADDRESS) &= ~(0b01);
             break;
         case TIM5:
-            TIMx_SR(TIM5_BASE_ADDRESS) &= ~(0x01);
+            TIMx_SR(TIM5_BASE_ADDRESS) &= ~(0b01);
             break;
     }
 }

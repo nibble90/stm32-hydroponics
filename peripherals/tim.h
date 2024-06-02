@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "../constants.h"
+#include "rcc.h"
 
 #define TIM3_BASE_ADDRESS (PERIPHERAL + 0x0400)
 #define TIM4_BASE_ADDRESS (PERIPHERAL + 0x0800)
@@ -19,10 +20,12 @@
 
 void enableTimerInterrupt(TIMER timer);
 void enableTimerCounter(TIMER timer);
-void enableTimerUpdateGeneration(TIMER timer);
+void generateTimerRegisterUpdate(TIMER timer);
 void passTimerReloadValueIntoRegister(TIMER timer, uint32_t autoReloadValue);
 void setTimerEventSourceToOverflow(TIMER timer);
 void setTimerPrescaler(TIMER timer, uint32_t prescaler);
 void resetTimerInterrupt(TIMER timer);
+void setupTimer(TIMER timer);
+void startTimer(TIMER timer, uint32_t autoReloadValue);
 
 #endif
