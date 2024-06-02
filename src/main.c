@@ -62,15 +62,8 @@ int main()
     //setAHBPrescaler(0b1011);
     setAPB1Prescaler(0b111);
 
-    enableTimerClock(TIM3);
-    
-    setTimerEventSourceToOverflow(TIM3);
-    // setTimerPrescaler(TIM3, (8000*8) - 1);
-    setTimerPrescaler(TIM3, 62500);
-    passTimerReloadValueIntoRegister(TIM3, PUMP1_FILL_TIME*16);
-    enableTimerUpdateGeneration(TIM3);
-    enableTimerInterrupt(TIM3);
-    enableTimerCounter(TIM3);
+    setupTimer(TIM3);
+    startTimer(TIM3, PUMP1_FILL_TIME);
 
     //setDeepSleep(1); // Set the deep sleep bit high
     //setPDDS(0); // Use stop mode in deep sleep

@@ -100,3 +100,17 @@ void resetTimerInterrupt(TIMER timer){
             break;
     }
 }
+
+void setupTimer(TIMER timer){
+    enableTimerClock(timer);
+    setTimerEventSourceToOverflow(timer);
+    setTimerPrescaler(timer, 62500);
+    enableTimerInterrupt(timer);
+    generateTimerRegisterUpdate(timer);
+}
+
+void startTimer(TIMER timer, uint32_t autoReloadValue){
+    passTimerReloadValueIntoRegister(timer, autoReloadValue*16);
+    generateTimerRegisterUpdate(timer);
+    enableTimerCounter(timer);
+}
