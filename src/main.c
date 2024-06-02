@@ -132,7 +132,7 @@ extern void EXTI0_IRQHandler(void){
 }
 
 extern void TIM3_IRQHandler(void){
+    resetTimerInterrupt(TIM3);
     resetEXTIPR6();
     clearTimer3Interrupt();
-    doNothing(100000);
 }

@@ -86,3 +86,17 @@ void setTimerPrescaler(TIMER timer, uint32_t prescaler){
             break;
     }
 }
+
+void resetTimerInterrupt(TIMER timer){
+    switch(timer){
+        case TIM3:
+            TIMx_SR(TIM3_BASE_ADDRESS) &= ~(0x01);
+            break;
+        case TIM4:
+            TIMx_SR(TIM4_BASE_ADDRESS) &= ~(0x01);
+            break;
+        case TIM5:
+            TIMx_SR(TIM5_BASE_ADDRESS) &= ~(0x01);
+            break;
+    }
+}
