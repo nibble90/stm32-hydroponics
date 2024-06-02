@@ -33,6 +33,7 @@ void doNothing(int iterations){
 int main()
 {
     //allowDebug(); // Allow debug in stop mode
+    disableTimerCounterInDebug(TIM3);
 
     openPortCClockGate();
     openPortBClockGate();
