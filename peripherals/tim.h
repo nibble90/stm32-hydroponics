@@ -17,12 +17,6 @@
 #define TIMx_PSC(x) (*((volatile uint32_t *)(x + 0x28)))
 #define TIMx_ARR(x) (*((volatile uint32_t *)(x + 0x2C)))
 
-typedef enum{
-    TIM3 = 0,
-    TIM4 = 1,
-    TIM5 = 2
-} TIMER;
-
 void enableTimerInterrupt(TIMER timer);
 void enableTimerCounter(TIMER timer);
 void enableTimerUpdateGeneration(TIMER timer);
