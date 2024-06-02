@@ -22,7 +22,7 @@ void setupRCCForRTC(void);
 int getRCCBDCRLSERDY(void);
 void openPortBClockGate(void);
 void enableTimerClock(TIMER timer);
-void setAPB1Prescaler(int prescaler);
-void setAHBPrescaler(int prescaler);
+void setAPB1Prescaler(uint32_t prescaler);
+void setAHBPrescaler(uint32_t prescaler);
 
 #endif

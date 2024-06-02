@@ -85,11 +85,11 @@ int getRCCBDCRLSERDY()
     return ((RCC_BDCR >> 1) & 0b1);
 }
 
-void setAPB1Prescaler(int prescaler){
+void setAPB1Prescaler(uint32_t prescaler){
     RCC_CFGR |= (prescaler << 8);
 }
 
-void setAHBPrescaler(int prescaler){
+void setAHBPrescaler(uint32_t prescaler){
     RCC_CFGR |= (prescaler << 4);
 }
 /**
