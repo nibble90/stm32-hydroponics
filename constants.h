@@ -14,7 +14,7 @@
 #define LDR_PIN 3
 
 #define PUMP1_FILL_TIME 10 // max value is 5461 (seconds)
-#define PUMP2_FILL_TIME 10000 // max value is 5461 (seconds)
-#define PUMP3_FILL_TIME 10000 // max value is 5461 (seconds)
+#define PUMP2_FILL_TIME 20 // max value is 5461 (seconds)
+#define PUMP3_FILL_TIME 30 // max value is 5461 (seconds)
 
 #endif
