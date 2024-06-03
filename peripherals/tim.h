@@ -7,8 +7,6 @@
 
 #define TIM2_BASE_ADDRESS (PERIPHERAL + 0x0000)
 #define TIM3_BASE_ADDRESS (PERIPHERAL + 0x0400)
-#define TIM4_BASE_ADDRESS (PERIPHERAL + 0x0800)
-#define TIM5_BASE_ADDRESS (PERIPHERAL + 0x0C00)
 
 #define TIMx_CR1(x) (*((volatile uint32_t *)(x + 0x00)))
 #define TIMx_CR2(x) (*((volatile uint32_t *)(x + 0x04)))

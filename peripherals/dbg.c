@@ -15,11 +15,5 @@ void disableTimerCounterInDebug(TIMER timer){
         case TIM3:
             DBGMCU_CR |= (0b1 << 12);
             break;
-        case TIM4:
-            DBGMCU_CR |= (0b1 << 13);
-            break;
-        case TIM5:
-            DBGMCU_CR |= (0b1 << 18);
-            break;
     }
 }

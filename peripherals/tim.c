@@ -16,12 +16,6 @@ void enableTimerInterrupt(TIMER timer){
         case TIM3:
             TIMx_DIER(TIM3_BASE_ADDRESS) |= 0x01;
             break;
-        case TIM4:
-            TIMx_DIER(TIM4_BASE_ADDRESS) |= 0x01;
-            break;
-        case TIM5:
-            TIMx_DIER(TIM5_BASE_ADDRESS) |= 0x01;
-            break;
     }
 }
 
@@ -40,12 +34,6 @@ void enableTimerCounter(TIMER timer){
         case TIM3:
             TIMx_CR1(TIM3_BASE_ADDRESS) |= 0x01;
             break;
-        case TIM4:
-            TIMx_CR1(TIM4_BASE_ADDRESS) |= 0x01;
-            break;
-        case TIM5:
-            TIMx_CR1(TIM5_BASE_ADDRESS) |= 0x01;
-            break;
     }
 }
 
@@ -63,12 +51,6 @@ void generateTimerRegisterUpdate(TIMER timer){
             break;
         case TIM3:
             TIMx_EGR(TIM3_BASE_ADDRESS) |= 0x01;
-            break;
-        case TIM4:
-            TIMx_EGR(TIM4_BASE_ADDRESS) |= 0x01;
-            break;
-        case TIM5:
-            TIMx_EGR(TIM5_BASE_ADDRESS) |= 0x01;
             break;
     }
 }
@@ -89,12 +71,6 @@ void passTimerReloadValueIntoRegister(TIMER timer, uint32_t autoReloadValue){
         case TIM3:
             TIMx_ARR(TIM3_BASE_ADDRESS) = autoReloadValue;
             break;
-        case TIM4:
-            TIMx_ARR(TIM4_BASE_ADDRESS) = autoReloadValue;
-            break;
-        case TIM5:
-            TIMx_ARR(TIM5_BASE_ADDRESS) = autoReloadValue;
-            break;
     }
 }
 
@@ -112,12 +88,6 @@ void setTimerEventSourceToOverflow(TIMER timer){
             break;
         case TIM3:
             TIMx_CR1(TIM3_BASE_ADDRESS) |= (0x01 << 2);
-            break;
-        case TIM4:
-            TIMx_CR1(TIM4_BASE_ADDRESS) |= (0x01 << 2);
-            break;
-        case TIM5:
-            TIMx_CR1(TIM5_BASE_ADDRESS) |= (0x01 << 2);
             break;
     }
 }
@@ -138,12 +108,6 @@ void setTimerPrescaler(TIMER timer, uint32_t prescaler){
         case TIM3:
             TIMx_PSC(TIM3_BASE_ADDRESS) = prescaler;
             break;
-        case TIM4:
-            TIMx_PSC(TIM4_BASE_ADDRESS) = prescaler;
-            break;
-        case TIM5:
-            TIMx_PSC(TIM5_BASE_ADDRESS) = prescaler;
-            break;
     }
 }
 
@@ -162,12 +126,6 @@ void resetTimerInterrupt(TIMER timer){
         case TIM3:
             TIMx_SR(TIM3_BASE_ADDRESS) &= ~(uint32_t)(0b01);
             break;
-        case TIM4:
-            TIMx_SR(TIM4_BASE_ADDRESS) &= ~(uint32_t)(0b01);
-            break;
-        case TIM5:
-            TIMx_SR(TIM5_BASE_ADDRESS) &= ~(uint32_t)(0b01);
-            break;
     }
 }
 
@@ -185,12 +143,6 @@ void disableTimerCounter(TIMER timer){
             break;
         case TIM3:
             TIMx_CR1(TIM3_BASE_ADDRESS) &= ~(uint32_t)(0x01);
-            break;
-        case TIM4:
-            TIMx_CR1(TIM4_BASE_ADDRESS) &= ~(uint32_t)(0x01);
-            break;
-        case TIM5:
-            TIMx_CR1(TIM5_BASE_ADDRESS) &= ~(uint32_t)(0x01);
             break;
     }
 }

@@ -62,12 +62,6 @@ void enableTimerNVICInterrupt(TIMER timer){
         case TIM3:
             NVIC_ISER0 |= NVIC_ISERx_MASK(29);
             break;
-        case TIM4:
-            NVIC_ISER0 |= NVIC_ISERx_MASK(30);
-            break;
-        case TIM5:
-            NVIC_ISER1 |= NVIC_ISERx_MASK(12);
-            break;
     }
 }
 
@@ -83,12 +77,6 @@ void clearTimerNVICInterrupt(TIMER timer){
             break;
         case TIM3:
             NVIC_ICPR0 |= NVIC_ISERx_MASK(29);
-            break;
-        case TIM4:
-            NVIC_ICPR0 |= NVIC_ISERx_MASK(30);
-            break;
-        case TIM5:
-            NVIC_ICPR1 |= NVIC_ISERx_MASK(12);
             break;
     }
 }

@@ -135,12 +135,6 @@ void enableTimerClock(TIMER timer){
         case TIM3:
             RCC_APB1ENR |= (0b1 << 1);
             break;
-        case TIM4:
-            RCC_APB1ENR |= (0b1 << 2);
-            break;
-        case TIM5:
-            RCC_APB1ENR |= (0b1 << 3);
-            break;
     }
 }
 
