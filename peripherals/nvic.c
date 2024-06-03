@@ -54,8 +54,11 @@ void clearLine0Interrupt(void)
  *
  * @param timer The timer to enable the interrupt for.
  */
-void enableTimerInterrupt(TIMER timer){
+void enableTimerNVICInterrupt(TIMER timer){
     switch(timer){
+        case TIM2:
+            NVIC_ISER0 |= NVIC_ISERx_MASK(28);
+            break;
         case TIM3:
             NVIC_ISER0 |= NVIC_ISERx_MASK(29);
             break;
@@ -73,8 +76,11 @@ void enableTimerInterrupt(TIMER timer){
  * 
  * @param timer The timer for which to clear the interrupt.
  */
-void clearTimerInterrupt(TIMER timer){
+void clearTimerNVICInterrupt(TIMER timer){
     switch(timer){
+        case TIM2:
+            NVIC_ICPR0 |= NVIC_ISERx_MASK(28);
+            break;
         case TIM3:
             NVIC_ICPR0 |= NVIC_ISERx_MASK(29);
             break;

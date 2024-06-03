@@ -10,6 +10,9 @@
  */
 void enableTimerInterrupt(TIMER timer){
     switch(timer){
+        case TIM2:
+            TIMx_DIER(TIM2_BASE_ADDRESS) |= 0x01;
+            break;
         case TIM3:
             TIMx_DIER(TIM3_BASE_ADDRESS) |= 0x01;
             break;
@@ -31,6 +34,9 @@ void enableTimerInterrupt(TIMER timer){
  */
 void enableTimerCounter(TIMER timer){
     switch(timer){
+        case TIM2:
+            TIMx_CR1(TIM2_BASE_ADDRESS) |= 0x01;
+            break;
         case TIM3:
             TIMx_CR1(TIM3_BASE_ADDRESS) |= 0x01;
             break;
@@ -52,6 +58,9 @@ void enableTimerCounter(TIMER timer){
  */
 void generateTimerRegisterUpdate(TIMER timer){
     switch(timer){
+        case TIM2:
+            TIMx_EGR(TIM2_BASE_ADDRESS) |= 0x01;
+            break;
         case TIM3:
             TIMx_EGR(TIM3_BASE_ADDRESS) |= 0x01;
             break;
@@ -74,6 +83,9 @@ void generateTimerRegisterUpdate(TIMER timer){
  */
 void passTimerReloadValueIntoRegister(TIMER timer, uint32_t autoReloadValue){
     switch(timer){
+        case TIM2:
+            TIMx_ARR(TIM2_BASE_ADDRESS) = autoReloadValue;
+            break;
         case TIM3:
             TIMx_ARR(TIM3_BASE_ADDRESS) = autoReloadValue;
             break;
@@ -95,6 +107,9 @@ void passTimerReloadValueIntoRegister(TIMER timer, uint32_t autoReloadValue){
  */
 void setTimerEventSourceToOverflow(TIMER timer){
     switch(timer){
+        case TIM2:
+            TIMx_CR1(TIM2_BASE_ADDRESS) |= (0x01 << 2);
+            break;
         case TIM3:
             TIMx_CR1(TIM3_BASE_ADDRESS) |= (0x01 << 2);
             break;
@@ -117,6 +132,9 @@ void setTimerEventSourceToOverflow(TIMER timer){
  */
 void setTimerPrescaler(TIMER timer, uint32_t prescaler){
     switch(timer){
+        case TIM2:
+            TIMx_PSC(TIM2_BASE_ADDRESS) = prescaler;
+            break;
         case TIM3:
             TIMx_PSC(TIM3_BASE_ADDRESS) = prescaler;
             break;
@@ -138,14 +156,41 @@ void setTimerPrescaler(TIMER timer, uint32_t prescaler){
  */
 void resetTimerInterrupt(TIMER timer){
     switch(timer){
+        case TIM2:
+            TIMx_SR(TIM2_BASE_ADDRESS) &= ~(uint32_t)(0b01);
+            break;
         case TIM3:
-            TIMx_SR(TIM3_BASE_ADDRESS) &= ~(0b01);
+            TIMx_SR(TIM3_BASE_ADDRESS) &= ~(uint32_t)(0b01);
             break;
         case TIM4:
-            TIMx_SR(TIM4_BASE_ADDRESS) &= ~(0b01);
+            TIMx_SR(TIM4_BASE_ADDRESS) &= ~(uint32_t)(0b01);
             break;
         case TIM5:
-            TIMx_SR(TIM5_BASE_ADDRESS) &= ~(0b01);
+            TIMx_SR(TIM5_BASE_ADDRESS) &= ~(uint32_t)(0b01);
+            break;
+    }
+}
+
+/**
+ * @brief Disables the timer counter for the specified timer.
+ *
+ * @param timer The timer to disable.
+ * 
+ * @return void
+ */
+void disableTimerCounter(TIMER timer){
+    switch(timer){
+        case TIM2:
+            TIMx_CR1(TIM2_BASE_ADDRESS) &= ~(uint32_t)(0x01);
+            break;
+        case TIM3:
+            TIMx_CR1(TIM3_BASE_ADDRESS) &= ~(uint32_t)(0x01);
+            break;
+        case TIM4:
+            TIMx_CR1(TIM4_BASE_ADDRESS) &= ~(uint32_t)(0x01);
+            break;
+        case TIM5:
+            TIMx_CR1(TIM5_BASE_ADDRESS) &= ~(uint32_t)(0x01);
             break;
     }
 }

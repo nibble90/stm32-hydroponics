@@ -32,14 +32,19 @@ void doNothing(int iterations){
  */
 int main()
 {
+    //enableMultipleTimers();
     //allowDebug(); // Allow debug in stop mode
     disableTimerCounterInDebug(TIM3);
+    disableTimerCounterInDebug(TIM2);
 
     openPortCClockGate();
     openPortBClockGate();
+    enableAFIOClock();
+
+    //enableAllClocks();
+
 
     setB0ToEXTI();
-    // setPA6ToEXTI(); default setting covers this -> deleted method
 
     setPinType(GPIOC, 13, output); // onboard LED
     setPinType(GPIOB, 0, input); // B0 to input
@@ -49,10 +54,12 @@ int main()
     // setupRTC();
     
     // enableRTCAlarmInterrupt();
-    enableEXTILine0Interrupt();
     enableLine0Interrupt();
-    enableTimerInterrupt(TIM3);
-    enableEXTILine6Interrupt();
+    enableEXTILine0Interrupt();
+    enableEXTILine3Interrupt();
+    enableEXTILine15Interrupt();
+    enableTimerNVICInterrupt(TIM2);
+    enableTimerNVICInterrupt(TIM3);
 
     setPin(GPIOC, 13, 0); // 0 == LED on
     //setPins(1);
@@ -63,7 +70,9 @@ int main()
     //setAHBPrescaler(0b1011);
     setAPB1Prescaler(0b111);
 
+    setupTimer(TIM2);
     setupTimer(TIM3);
+    startTimer(TIM2, PUMP2_FILL_TIME);
     startTimer(TIM3, PUMP1_FILL_TIME);
 
     //setDeepSleep(1); // Set the deep sleep bit high
@@ -82,7 +91,7 @@ int main()
         //__asm__ volatile("WFI"); // Wait for event
         //__asm__ volatile("ISB"); // Instruction synchronization barrier to flush the pipeline
         //__asm__ volatile("nop");
-        doNothing(32000);
+        doNothing(1500000);
     }
 
     return 0;
@@ -125,9 +134,16 @@ extern void EXTI0_IRQHandler(void){
     }
 }
 
+extern void TIM2_IRQHandler(void){
+    resetTimerInterrupt(TIM2);
+    resetEXTILine15Interrupt();
+    clearTimerNVICInterrupt(TIM2);
+    disableTimerCounter(TIM2);
+}
+
 extern void TIM3_IRQHandler(void){
     resetTimerInterrupt(TIM3);
-    resetEXTIPR6Interrupt();
-    clearTimerInterrupt(TIM3);
-}
+    resetEXTILine4Interrupt();
+    clearTimerNVICInterrupt(TIM3);
+    disableTimerCounter(TIM3);
 }

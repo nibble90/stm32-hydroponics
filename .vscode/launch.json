@@ -14,11 +14,7 @@
             "servertype": "stutil",
             "device": "STM32F103C6T6",
             "v1": false,
-            "showDevDebugOutput": "parsed",
-            "liveWatch": {
-                "enabled": true,
-                "samplesPe,rSecond": 4
-            },
+            "showDevDebugOutput": "none",
             "preLaunchTask": "build"
         }
     ]

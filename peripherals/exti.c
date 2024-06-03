@@ -49,12 +49,81 @@ void resetEXTIPR0(){
     EXTI_PR &= (uint32_t)(0b1 << 0);
 }
 
-void enableEXTILine6Interrupt(){
+
+/**
+ * @brief Enables the EXTI Line 3 interrupt.
+ * 
+ * @return void
+ */
+void enableEXTILine3Interrupt()
+{
+    EXTI_IMR |= (0b1 << 3);
+    EXTI_EMR |= (0b1 << 3);
+    EXTI_RTSR |= (0b1 << 3);
+}
+
+/**
+ * @brief Enables the EXTI Line 4 interrupt.
+ * 
+ * @return void
+ */
+void enableEXTILine4Interrupt()
+{
+    EXTI_IMR |= (0b1 << 4);
+    EXTI_EMR |= (0b1 << 4);
+    EXTI_RTSR |= (0b1 << 4);
+}
+
+/**
+ * @brief Enables the EXTI Line 6 interrupt.
+ * 
+ * @return void
+ */
+void enableEXTILine6Interrupt()
+{
     EXTI_IMR |= (0b1 << 6);
     EXTI_EMR |= (0b1 << 6);
     EXTI_RTSR |= (0b1 << 6);
 }
 
-void resetEXTIPR6Interrupt(){
+void enableEXTILine15Interrupt()
+{
+    EXTI_IMR |= (0b1 << 15);
+    EXTI_EMR |= (0b1 << 15);
+    EXTI_RTSR |= (0b1 << 15);
+}
+
+/**
+ * @brief Resets the EXTI Line 3 interrupt pending flag.
+ * 
+ * @return void
+ */
+void resetEXTILine3Interrupt()
+{
+    EXTI_PR &= (uint32_t)(0b1 << 3);
+}
+
+/**
+ * @brief Resets the EXTI Line 4 interrupt pending flag.
+ * 
+ * @return void
+ */
+void resetEXTILine4Interrupt()
+{
+    EXTI_PR &= (uint32_t)(0b1 << 4);
+}
+
+/**
+ * @brief Resets the EXTI Line 6 interrupt pending flag.
+ * 
+ * @return void
+ */
+void resetEXTILine6Interrupt()
+{
     EXTI_PR &= (uint32_t)(0b1 << 6);
+}
+
+void resetEXTILine15Interrupt()
+{
+    EXTI_PR &= (uint32_t)(0b1 << 15);
 }

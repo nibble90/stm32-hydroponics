@@ -9,6 +9,9 @@ void allowDebug(void)
 
 void disableTimerCounterInDebug(TIMER timer){
     switch(timer){
+        case TIM2:
+            DBGMCU_CR |= (0b1 << 11);
+            break;
         case TIM3:
             DBGMCU_CR |= (0b1 << 12);
             break;

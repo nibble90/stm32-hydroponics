@@ -129,6 +129,9 @@ void setupRCCForRTC(){
  */
 void enableTimerClock(TIMER timer){
     switch(timer){
+        case TIM2:
+            RCC_APB1ENR |= (0b1 << 0);
+            break;
         case TIM3:
             RCC_APB1ENR |= (0b1 << 1);
             break;
@@ -139,4 +142,16 @@ void enableTimerClock(TIMER timer){
             RCC_APB1ENR |= (0b1 << 3);
             break;
     }
+}
+
+void enableMultipleTimers(){
+    RCC_APB1ENR |= (0b111);
+}
+
+void enableAFIOClock(){
+    RCC_APB2ENR |= (0b1 << 0);
+}
+
+void enableAllClocks(){
+    RCC_APB2ENR |= 0b1011111;
 }

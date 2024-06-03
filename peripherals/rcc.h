@@ -24,5 +24,8 @@ void openPortBClockGate(void);
 void enableTimerClock(TIMER timer);
 void setAPB1Prescaler(uint32_t prescaler);
 void setAHBPrescaler(uint32_t prescaler);
+void enableAFIOClock(void);
+void enableAllClocks(void);
+void enableMultipleTimers(void);
 
 #endif
