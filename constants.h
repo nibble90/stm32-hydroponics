@@ -8,10 +8,10 @@
 #define PERIPHERAL 0x40000000
 
 // Config Settings
-#define PUMP1_PIN 0
-#define PUMP2_PIN 1
-#define PUMP3_PIN 2
-#define LDR_PIN 3
+#define PUMP1_PIN 7
+#define PUMP2_PIN 8
+#define PUMP3_PIN 9
+#define LDR_PIN 0
 
 #define PUMP1_FILL_TIME 10 // max value is 5461 (seconds)
 #define PUMP2_FILL_TIME 20 // max value is 5461 (seconds)

@@ -39,7 +39,7 @@ int main()
 
     openPortCClockGate();
     openPortBClockGate();
-    enableAFIOClock();
+    //enableAFIOClock();
 
     //enableAllClocks();
 
@@ -48,16 +48,15 @@ int main()
 
     setPinType(GPIOC, 13, output); // onboard LED
     setPinType(GPIOB, 0, input); // B0 to input
-
-    setPinTypes(GPIOB, (int[]){11, 10, 1, 9, 8, 7, 6, 5}, 8, output);
+    setPinTypes(GPIOB, (int[]){PUMP1_PIN, PUMP2_PIN, PUMP3_PIN}, 3, output);
     
     // setupRTC();
     
     // enableRTCAlarmInterrupt();
     enableLine0Interrupt();
     enableEXTILine0Interrupt();
-    enableEXTILine3Interrupt();
-    enableEXTILine15Interrupt();
+    //enableEXTILine3Interrupt();
+    //enableEXTILine15Interrupt();
     enableTimerNVICInterrupt(TIM2);
     enableTimerNVICInterrupt(TIM3);
 
@@ -65,7 +64,7 @@ int main()
     //setPins(1);
     doNothing(100000);
     setPin(GPIOC, 13, 1);
-    //setPins(0);
+    setPins(0);
 
     //setAHBPrescaler(0b1011);
     setAPB1Prescaler(0b111);
@@ -91,7 +90,9 @@ int main()
         //__asm__ volatile("WFI"); // Wait for event
         //__asm__ volatile("ISB"); // Instruction synchronization barrier to flush the pipeline
         //__asm__ volatile("nop");
+        setPins(1);
         doNothing(1500000);
+        setPins(0);
     }
 
     return 0;
@@ -136,14 +137,14 @@ extern void EXTI0_IRQHandler(void){
 
 extern void TIM2_IRQHandler(void){
     resetTimerInterrupt(TIM2);
-    resetEXTILine15Interrupt();
+    //resetEXTILine15Interrupt();
     clearTimerNVICInterrupt(TIM2);
     disableTimerCounter(TIM2);
 }
 
 extern void TIM3_IRQHandler(void){
     resetTimerInterrupt(TIM3);
-    resetEXTILine4Interrupt();
+    //resetEXTILine4Interrupt
     clearTimerNVICInterrupt(TIM3);
     disableTimerCounter(TIM3);
 }

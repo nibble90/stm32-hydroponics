@@ -85,13 +85,7 @@ void setPin(uint32_t GPIOBlock, int pinNumber, int value){
  * @param value: The value to set the pin to (0 for low, 1 for high)
  */
 void setPins(int value){
-    setPin(GPIOB, 11, value);
-    setPin(GPIOB, 10, value);
-    setPin(GPIOB, 1, value);
-
-    setPin(GPIOB, 9, value);
-    setPin(GPIOB, 8, value);
-    setPin(GPIOB, 7, value);
-    setPin(GPIOB, 6, value);
-    setPin(GPIOB, 5, value);
+    setPin(GPIOB, PUMP1_PIN, value);
+    setPin(GPIOB, PUMP2_PIN, value);
+    setPin(GPIOB, PUMP3_PIN, value);
 }
