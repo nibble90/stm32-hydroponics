@@ -155,6 +155,8 @@
 */
 #define GPIO_ODR_PIN(x) (uint32_t)(1 << x)
 
+#define GPIO_IDR_REGISTER(x) (*(volatile uint32_t *)(x + 0x8))
+
 /**
  * @brief Pin mode
  * 
@@ -172,5 +174,6 @@ void setPinType(uint32_t GPIOBlock, int pinNumber, PinMode pinMode);
 void setPinTypes(uint32_t GPIOBlock, int pinNumbers[], int sizeOfArray, PinMode pinMode);
 void setPin(uint32_t GPIOBlock, int pinNumber, int value);
 void setPins(int value);
+int getPin(uint32_t GPIOBlock, int pinNumber);
 
 #endif

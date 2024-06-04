@@ -9,6 +9,12 @@
 #include "../peripherals/dbg.h"
 #include "../peripherals/afio.h"
 #include "../peripherals/tim.h"
+#include "fill-tank.h"
+
+
+int currentlyFilling  = 0;
+int currentlyMaintaining = 0;
+int currentlyWaiting = 0;
 
 /**
  * @brief This function does nothing for a given number of iterations.
@@ -71,28 +77,62 @@ int main()
 
     setupTimer(TIM2);
     setupTimer(TIM3);
-    startTimer(TIM2, PUMP2_FILL_TIME);
-    startTimer(TIM3, PUMP1_FILL_TIME);
 
     //setDeepSleep(1); // Set the deep sleep bit high
     //setPDDS(0); // Use stop mode in deep sleep
     //setLPPS(1); // Enable low-power deep sleep mode
 
-    for (;;){
-        // Set the output bit low (LED on)
-        //doNothing(6000);
-        //setPin(GPIOC, 13, 0);
-        //doNothing(6000);
-        // Set the output bit high (LED off)
-        //setPin(GPIOC, 13, 1);
-
-        //__asm__ volatile("DSB"); // Data synchronization barrier to ensure all memory accesses are complete
-        //__asm__ volatile("WFI"); // Wait for event
-        //__asm__ volatile("ISB"); // Instruction synchronization barrier to flush the pipeline
-        //__asm__ volatile("nop");
-        setPins(1);
-        doNothing(1500000);
-        setPins(0);
+    if(ENABLE_LIGHT_STAGE_SWITCH){
+        for (;;){
+            if(!currentlyWaiting){
+                if(!currentlyFilling && !currentlyMaintaining){
+                    currentlyFilling = 1;
+                    currentlyWaiting = 1;
+                    startTimer(TIM2, STAGE1_FILL_TIME);
+                    fillTank();
+                }else if(currentlyFilling && !currentlyMaintaining){
+                    currentlyFilling = 0;
+                    currentlyMaintaining = 1;
+                    currentlyWaiting = 1;
+                    startTimer(TIM3, STAGE2_TIME);
+                    stopFillingTank();
+                    maintainTank();
+                }else{
+                    currentlyFilling = 0;
+                    currentlyMaintaining = 0;
+                    currentlyWaiting = 1;
+                    startTimer(TIM2, getPin(GPIOB, LDR_PIN) ? STAGE1_WAIT_TIME_LIGHT : STAGE1_WAIT_TIME_DARK);
+                    stopMaintainingTank();
+                }
+            }
+            __asm__ volatile("WFI");
+        }
+    }
+    else{
+        for (;;){
+            if(!currentlyWaiting){
+                if(!currentlyFilling && !currentlyMaintaining){
+                    currentlyFilling = 1;
+                    currentlyWaiting = 1;
+                    startTimer(TIM2, STAGE1_FILL_TIME);
+                    // fill tank
+                }else if(currentlyFilling && !currentlyMaintaining){
+                    currentlyFilling = 0;
+                    currentlyMaintaining = 1;
+                    currentlyWaiting = 1;
+                    startTimer(TIM3, STAGE2_TIME);
+                    // stop filling tank
+                    // start maintaining tank
+                }else{
+                    currentlyFilling = 0;
+                    currentlyMaintaining = 0;
+                    currentlyWaiting = 1;
+                    startTimer(TIM2, STAGE1_WAIT_TIME_LIGHT);
+                    // stop maintaining tank
+                }
+            }
+            __asm__ volatile("WFI");
+        }
     }
 
     return 0;
@@ -140,6 +180,8 @@ extern void TIM2_IRQHandler(void){
     //resetEXTILine15Interrupt();
     clearTimerNVICInterrupt(TIM2);
     disableTimerCounter(TIM2);
+
+    currentlyWaiting = !currentlyWaiting;
 }
 
 extern void TIM3_IRQHandler(void){
@@ -147,4 +189,6 @@ extern void TIM3_IRQHandler(void){
     //resetEXTILine4Interrupt
     clearTimerNVICInterrupt(TIM3);
     disableTimerCounter(TIM3);
+
+    currentlyWaiting = !currentlyWaiting;
 }

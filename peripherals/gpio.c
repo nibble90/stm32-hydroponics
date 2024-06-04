@@ -89,3 +89,7 @@ void setPins(int value){
     setPin(GPIOB, PUMP2_PIN, value);
     setPin(GPIOB, PUMP3_PIN, value);
 }
+
+int getPin(uint32_t GPIOBlock, int pinNumber){
+    return ((GPIO_IDR_REGISTER(GPIOBlock) >> pinNumber) & 0b1);
+}

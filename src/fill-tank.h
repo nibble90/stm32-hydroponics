@@ -6,7 +6,8 @@
 #include "../peripherals/gpio.h"
 
 void fillTank();
-void turnPumpsOn();
-void turnPumpsOff();
+void stopFillingTank();
+void maintainTank();
+void stopMaintainingTank();
 
 #endif

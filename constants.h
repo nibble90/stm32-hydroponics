@@ -13,8 +13,13 @@
 #define PUMP3_PIN 9
 #define LDR_PIN 0
 
-#define PUMP1_FILL_TIME 10 // max value is 5461 (seconds)
-#define PUMP2_FILL_TIME 20 // max value is 5461 (seconds)
-#define PUMP3_FILL_TIME 30 // max value is 5461 (seconds)
+#define STAGE1_WAIT_TIME_LIGHT 10 // max value is 5461 (seconds)
+#define STAGE1_WAIT_TIME_DARK 10 // max value is 5461 (seconds)
+// Stage 2 must be less time than stage 1
+#define STAGE2_TIME 20 // max value is 5461 (seconds)
+
+#define STAGE1_FILL_TIME 10
+
+#define ENABLE_LIGHT_STAGE_SWITCH 1
 
 #endif
