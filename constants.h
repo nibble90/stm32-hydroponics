@@ -18,7 +18,7 @@
 // Stage 2 must be less time than stage 1
 #define STAGE2_TIME 20 // max value is 5461 (seconds)
 
-#define STAGE1_FILL_TIME 10
+#define STAGE1_FILL_TIME 60
 
 #define ENABLE_LIGHT_STAGE_SWITCH 1
 
