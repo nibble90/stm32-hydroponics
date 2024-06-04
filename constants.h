@@ -8,9 +8,9 @@
 #define PERIPHERAL 0x40000000
 
 // Config Settings
-#define PUMP1_PIN 7
-#define PUMP2_PIN 8
-#define PUMP3_PIN 9
+#define PUMP1_PIN 8
+#define PUMP2_PIN 9
+#define PUMP3_PIN 7
 #define LDR_PIN 0
 
 #define STAGE1_WAIT_TIME_LIGHT 10 // max value is 5461 (seconds)
