@@ -50,7 +50,7 @@ int main()
     //enableAllClocks();
 
 
-    setB0ToEXTI();
+    // setB0ToEXTI();
 
     setPinType(GPIOC, 13, output); // onboard LED
     setPinType(GPIOB, 0, input); // B0 to input
@@ -59,8 +59,8 @@ int main()
     // setupRTC();
     
     // enableRTCAlarmInterrupt();
-    enableLine0Interrupt();
-    enableEXTILine0Interrupt();
+    // enableLine0Interrupt();
+    // enableEXTILine0Interrupt();
     //enableEXTILine3Interrupt();
     //enableEXTILine15Interrupt();
     enableTimerNVICInterrupt(TIM2);
@@ -143,37 +143,37 @@ int main()
  * 
  * @return void
  */
-extern void RTC_Alarm_IRQHandler(void){
-    resetRTCAlarm();
-    resetEXTIPRRTC();
-    clearRTCAlarmInterrupt();
-    for (int i = 0; i < 2; i++)
-    {
-        setPin(GPIOC, 13, 0);
-        doNothing(100000);
-        setPin(GPIOC, 13, 1);
-        doNothing(100000);
-    }
-}
+// extern void RTC_Alarm_IRQHandler(void){
+//     resetRTCAlarm();
+//     resetEXTIPRRTC();
+//     clearRTCAlarmInterrupt();
+//     for (int i = 0; i < 2; i++)
+//     {
+//         setPin(GPIOC, 13, 0);
+//         doNothing(100000);
+//         setPin(GPIOC, 13, 1);
+//         doNothing(100000);
+//     }
+// }
 
-extern void EXTI0_IRQHandler(void){
-    resetEXTIPR0();
-    clearLine0Interrupt();
-    for (int i = 0; i < 30; i++)
-    {
-        setPins(1);
-        doNothing(300000);
-        setPins(0);
+// extern void EXTI0_IRQHandler(void){
+//     resetEXTIPR0();
+//     clearLine0Interrupt();
+//     for (int i = 0; i < 30; i++)
+//     {
+//         setPins(1);
+//         doNothing(300000);
+//         setPins(0);
 
-        doNothing(350000);
+//         doNothing(350000);
 
-        setPins(1);
-        doNothing(300000);
-        setPins(0);
+//         setPins(1);
+//         doNothing(300000);
+//         setPins(0);
 
-        doNothing(600000);
-    }
-}
+//         doNothing(600000);
+//     }
+// }
 
 extern void TIM2_IRQHandler(void){
     resetTimerInterrupt(TIM2);
