@@ -39,7 +39,7 @@ void doNothing(int iterations){
 int main()
 {
     //enableMultipleTimers();
-    //allowDebug(); // Allow debug in stop mode
+    allowDebug(); // Allow debug in sleep mode
     disableTimerCounterInDebug(TIM3);
     disableTimerCounterInDebug(TIM2);
 
@@ -68,7 +68,7 @@ int main()
 
     setPin(GPIOC, 13, 0); // 0 == LED on
     //setPins(1);
-    doNothing(100000);
+    doNothing(12000000); // provide an opportunity to stop the program
     setPin(GPIOC, 13, 1);
     setPins(0);
 
@@ -78,7 +78,7 @@ int main()
     setupTimer(TIM2);
     setupTimer(TIM3);
 
-    //setDeepSleep(1); // Set the deep sleep bit high
+    setDeepSleep(0); // Set the deep sleep bit high
     //setPDDS(0); // Use stop mode in deep sleep
     //setLPPS(1); // Enable low-power deep sleep mode
 

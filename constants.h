@@ -14,7 +14,7 @@
 #define LDR_PIN 0
 
 #define STAGE1_WAIT_TIME_LIGHT 10 // max value is 5461 (seconds)
-#define STAGE1_WAIT_TIME_DARK 10 // max value is 5461 (seconds)
+#define STAGE1_WAIT_TIME_DARK 20 // max value is 5461 (seconds)
 // Stage 2 must be less time than stage 1
 #define STAGE2_TIME 20 // max value is 5461 (seconds)
 
