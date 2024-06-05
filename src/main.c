@@ -39,9 +39,9 @@ void doNothing(int iterations){
 int main()
 {
     //enableMultipleTimers();
-    allowDebug(); // Allow debug in sleep mode
-    disableTimerCounterInDebug(TIM3);
-    disableTimerCounterInDebug(TIM2);
+    //allowDebug(); // Allow debug in sleep mode
+    //disableTimerCounterInDebug(TIM3);
+    //disableTimerCounterInDebug(TIM2);
 
     openPortCClockGate();
     openPortBClockGate();
@@ -72,7 +72,7 @@ int main()
     setPin(GPIOC, 13, 1);
     setPins(0);
 
-    //setAHBPrescaler(0b1011);
+    setAHBPrescaler(0b1001);
     setAPB1Prescaler(0b111);
 
     setupTimer(TIM2);
@@ -115,20 +115,20 @@ int main()
                     currentlyFilling = 1;
                     currentlyWaiting = 1;
                     startTimer(TIM2, STAGE1_FILL_TIME);
-                    // fill tank
+                    fillTank();
                 }else if(currentlyFilling && !currentlyMaintaining){
                     currentlyFilling = 0;
                     currentlyMaintaining = 1;
                     currentlyWaiting = 1;
                     startTimer(TIM3, STAGE2_TIME);
-                    // stop filling tank
-                    // start maintaining tank
+                    stopFillingTank();
+                    maintainTank();
                 }else{
                     currentlyFilling = 0;
                     currentlyMaintaining = 0;
                     currentlyWaiting = 1;
                     startTimer(TIM2, STAGE1_WAIT_TIME_LIGHT);
-                    // stop maintaining tank
+                    stopMaintainingTank();
                 }
             }
             __asm__ volatile("WFI");

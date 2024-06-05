@@ -156,7 +156,7 @@ void setupTimer(TIMER timer){
 }
 
 void startTimer(TIMER timer, uint32_t autoReloadValue){
-    passTimerReloadValueIntoRegister(timer, autoReloadValue*16);
+    passTimerReloadValueIntoRegister(timer, autoReloadValue*4);
     generateTimerRegisterUpdate(timer);
     enableTimerCounter(timer);
 }
