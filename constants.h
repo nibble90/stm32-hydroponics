@@ -11,9 +11,9 @@
 #define PERIPHERAL 0x40000000
 
 // Config Settings
-#define PUMP1_PIN 8
+#define PUMP1_PIN 7
 #define PUMP2_PIN 9
-#define PUMP3_PIN 7
+#define PUMP3_PIN 8 // pump 3 currently dead
 #define LDR_PIN 0
 
 //  Maximum values:
@@ -27,7 +27,7 @@
 #define STAGE1_WAIT_TIME_DARK hoursToSeconds(4.55)
 
 #define STAGE2_TIME minutesToSeconds(3)
-#define STAGE1_FILL_TIME  minutesToSeconds(2.5)
+#define STAGE1_FILL_TIME  minutesToSeconds(3.5)
 
 #define ENABLE_LIGHT_STAGE_SWITCH 1
 
