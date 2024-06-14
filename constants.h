@@ -27,7 +27,7 @@
 #define STAGE1_WAIT_TIME_DARK hoursToSeconds(4.55)
 
 #define STAGE2_TIME minutesToSeconds(3)
-#define STAGE1_FILL_TIME  minutesToSeconds(3.5)
+#define STAGE1_FILL_TIME  minutesToSeconds(2.5)
 
 #define ENABLE_LIGHT_STAGE_SWITCH 1
 
